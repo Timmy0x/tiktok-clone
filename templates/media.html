@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Media | t3</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/styles/core.css">
+        <link rel="stylesheet" href="/styles/media.css">
+
+        <link href="//vjs.zencdn.net/7.10.2/video-js.min.css" rel="stylesheet">
+        <script src="//vjs.zencdn.net/7.10.2/video.min.js"></script>
+
+        <script defer>
+            window.onload = function () {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("videos").style.display = "inline-grid";
+            }
+
+            document.addEventListener("click", function() {
+                var checkScroll = async function () {
+                    var videos = Array.from(document.getElementsByTagName('video'));
+                    for (var video of videos) {
+                        var rect = video.getBoundingClientRect();
+                        if (rect.top < window.innerHeight && rect.bottom > 0) {
+                            if (video.paused && video.readyState == 4) {
+                                video.play().catch(function(error) {});
+                            }
+
+                            if (video.readyState < 2) {
+                                if (document.getElementById("loader").style.display != "initial") {
+                                    document.getElementById("loader").style.display = "initial"
+                                }
+                            } else {
+                                document.getElementById("loader").style.display = "none";
+                            }
+                        } else {
+                            if (!video.paused) {
+                                video.pause();
+                                video.currentTime = 0;
+                            }
+                        }
+                    }
+                };
+                setInterval(checkScroll, 10)
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="loader">
+            <span></span>
+            <span></span>
+        </div>
+        <div id="videos" style="display: none;">
+            {% for item in videos %}
+                <div>
+                    <video preload="auto" loading="lazy" loop webkit-playsinline playsinline><source src="{{ item.get("url") }}"></video>
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

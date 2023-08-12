@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#videos {
+    width: 96%;
+    height: 100%;
+
+    scroll-snap-type: y mandatory;
+    scroll-snap-align: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    aspect-ratio: 1/1;
+
+    margin-left: 2%;
+    margin-right: 2%;
+
+    color: white;
+}
+
+#videos > div {
+    scroll-snap-align: center;
+    display: inline-grid;
+}
+#videos div {
+    width: 94%;
+    height: 96vh;
+
+    background-color: black;
+
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    padding: 0;
+
+    border-radius: 30px;
+
+    display: inline-grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+#videos div video {
+    width: 100%;
+    max-width: 1080px;
+    height: max-content;
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+
+    border-radius: 30px;
+
+    grid-column: 1 / span 10;
+    grid-row: 1 / span 10;
+}
+#videos div h1 {
+    grid-row: 9;
+    grid-column: 1 / span 10;
+
+    height: 90%;
+    width: 90%;
+    padding: 5%;
+    margin: 0;
+
+    font-size: 3.4rem;
+    font-weight: normal;
+}
+#videos div p {
+    grid-row: 10;
+    grid-column: 1 / span 10;
+
+    height: 90%;
+    width: 90%;
+    padding: 5%;
+    margin: 0;
+
+    font-size: 2.3rem;
+}
