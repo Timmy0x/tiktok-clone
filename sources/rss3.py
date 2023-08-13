@@ -1,8 +1,8 @@
 import requests
 import json
 
-def get_rss3(amount=40):
-    approved_addresses = ["0x0c74073f910a809e87d21830cbf86790fc8ca072"]
+def get_rss3(amount=100):
+    approved_addresses = ["0x0c74073f910a809e87d21830cbf86790fc8ca072", "0x518f688265970cea7a5d83e3a2793be4211e88b9"]
     base_url = "https://api.rss3.io/v1/notes"
     payload = {
         "limit": amount,
